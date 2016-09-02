@@ -50,7 +50,7 @@ def list_write(range_name, value_list, ws=None):
     value_column = [[e] for e in value_list]
     Range(ws.name, range_name).value = value_column
 
-def list_read(range_name, value_list, ws=None):
+def list_read(range_name, ws=None):
     """Read a list vertially.
 
     list_read(range_name, value_list, ws=None)
@@ -58,6 +58,7 @@ def list_read(range_name, value_list, ws=None):
     ws = Sheet.active() if ws is None else ws
     # Range(range_name).options(transpose=True).value = value_list
     datalist = Range(ws.name, range_name).vertical.value
+    return datalist
 
 def df_read(range_name, ws=None):
     """Return dataframe from range name and Sheet.; ex: df = df_read('a1').
@@ -78,6 +79,7 @@ def df_write(df, range_name, ws=None):
     Range(ws.name, range_name, index=False).value = df # without pd indices
 
 def autofit(ws=None):
-    # Autofit columns of worksheet
+    """Autofit columns of worksheet
+    """
     ws = Sheet.active() if ws is None else ws
     ws.autofit(axis='columns')
