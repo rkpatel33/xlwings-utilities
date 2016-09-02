@@ -76,3 +76,8 @@ def df_write(df, range_name, ws=None):
     """
     ws = Sheet.active() if ws is None else ws
     Range(ws.name, range_name, index=False).value = df # without pd indices
+
+def autofit(ws=None):
+    # Autofit columns of worksheet
+    ws = Sheet.active() if ws is None else ws
+    ws.autofit(axis='columns')
